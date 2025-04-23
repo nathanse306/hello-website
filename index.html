@@ -5,7 +5,7 @@
     <style>
         body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             margin: 0;
@@ -13,9 +13,53 @@
             font-family: Arial, sans-serif;
             font-size: 2.5em;
         }
+        #messageForm {
+            margin-top: 20px;
+        }
+        #userMessage {
+            padding: 10px;
+            font-size: 0.5em;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 0.5em;
+            margin-left: 10px;
+        }
+        .display-text {
+            color: red;
+            font-style: italic;
+            font-size: 0.8em;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Hello Good Morning! 🌞</h1>
+    
+    <form id="messageForm">
+        <input type="text" id="userMessage" placeholder="Type your message here">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div id="messageDisplay"></div>
+
+    <script>
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = document.getElementById('userMessage').value;
+            
+            if (message) {
+                const displayDiv = document.getElementById('messageDisplay');
+                const newMessage = document.createElement('div');
+                newMessage.className = 'display-text';
+                newMessage.textContent = message;
+                displayDiv.appendChild(newMessage);
+                
+                // Clear input field
+                document.getElementById('userMessage').value = '';
+            }
+        });
+    </script>
 </body>
 </html>
